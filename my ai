@@ -1,0 +1,23 @@
+import openai
+
+# Set your OpenAI API key
+openai.api_key = 'your-api-key'
+
+def chat_with_gpt(prompt):
+    response = openai.Completion.create(
+      engine="text-davinci-003",  # You can choose a different engine based on your preference
+      prompt=prompt,
+      temperature=0.7,
+      max_tokens=100
+    )
+    return response.choices[0].text.strip()
+
+# Example conversation loop
+print("Welcome to the ChatGPT bot! Type 'exit' to end the conversation.")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == 'exit':
+        print("ChatGPT: Goodbye!")
+        break
+    response = chat_with_gpt(user_input)
+    print("ChatGPT:", response)
